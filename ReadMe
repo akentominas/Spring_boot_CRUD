@@ -1,0 +1,41 @@
+So What was all this Dependency Injection all about?
+
+We can now switch to a completely new Database with changing a single line of code
+
+Lets assume that we want to create a mongodb Database service
+
+-Create a new class that implements the IPersonDAO interface, with @Repository("mongodb")
+
+-implement all IPersonDAO methods
+
+We are injecting the actual service inside the PersonService class
+So
+
+- open PersonService.class and change @Qualifier to "mongodb"
+
+############
+
+@Autowired
+    public PersonService(@Qualifier("mongodb") IPersonDAO iPersonDAO) {
+        this.iPersonDAO = iPersonDAO;
+    }
+
+############
+
+And that's it!
+
+--------------------------------------------------------------------------------------------
+How can we deploy our application jar now so we can have it up and running in some server?
+
+in the right side of the IDE open up (Maven) and on the LifeCycle click install
+
+right click on target directory -> open in terminal and type
+
+/target# java jar (jar name)
+
+-You can check in the browser
+
+localhost:8080/api/person
+
+-----------------------------------------------------------------------------------------------
+
